@@ -2,6 +2,7 @@ use crate::{
     constants::{STATE_SEED, VAULT_SEED},
     state::VaultState,
 };
+
 use anchor_lang::{
     prelude::*,
     system_program::{transfer, Transfer},

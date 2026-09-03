@@ -1,8 +1,8 @@
 use crate::{
-    constants::{STATE_SEED, VAULT_SEED},
     error::ErrorCode,
-    state::VaultState,
+    VaultState, {STATE_SEED, VAULT_SEED},
 };
+
 use anchor_lang::{
     prelude::*,
     system_program::{transfer, Transfer},
