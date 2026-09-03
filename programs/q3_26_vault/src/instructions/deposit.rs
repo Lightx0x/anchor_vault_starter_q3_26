@@ -1,5 +1,5 @@
 use crate::{
-    constants::{STATE, VAULT_SEED},
+    constants::{STATE_SEED, VAULT_SEED},
     error::ErrorCode,
     state::VaultState,
 };
@@ -14,7 +14,7 @@ pub struct Deposit<'info> {
     pub user: Signer<'info>,
 
     #[account(
-        seeds = [STATE, user.key().as_ref()],
+        seeds = [STATE_SEED, user.key().as_ref()],
         bump = vault_state.state_bump
     )]
     pub vault_state: Account<'info, VaultState>,
