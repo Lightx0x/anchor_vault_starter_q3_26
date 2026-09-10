@@ -34,9 +34,15 @@ impl<'info> Withdraw<'info> {
         require!(amount > 0, ErrorCode::InvalidAmount);
 
         let rent_exempt = Rent::get()?.minimum_balance(self.vault.data_len());
+        let remaining_balance = self
+            .vault
+            .lamports()
+            .checked_sub(amount)
+            .ok_or(ErrorCode::InsufficientFunds)?; // error gets triggered here instead of in
+                                                   // require
 
         require!(
-            self.vault.lamports().saturating_sub(amount) >= rent_exempt,
+            remaining_balance >= rent_exempt,
             ErrorCode::InsufficientFunds
         );
 
